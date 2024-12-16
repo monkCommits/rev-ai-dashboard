@@ -1,50 +1,40 @@
 import { BRAND } from '../../types/brand';
-import BrandOne from '../../images/brand/brand-01.svg';
-import BrandTwo from '../../images/brand/brand-02.svg';
-import BrandThree from '../../images/brand/brand-03.svg';
-import BrandFour from '../../images/brand/brand-04.svg';
-import BrandFive from '../../images/brand/brand-05.svg';
 
 const brandData: BRAND[] = [
   {
-    logo: BrandOne,
-    name: 'Google',
-    visitors: 3.5,
-    revenues: '5,768',
-    sales: 590,
-    conversion: 4.8,
+    name: '1001', // Bill No
+    visitors: '2024-12-01', // Service Date
+    revenues: '$1,200', // Service Amount
+    sales: 'Paid', // Payment Status
+    conversion: 'Stage 1', // Trigger
   },
   {
-    logo: BrandTwo,
-    name: 'Twitter',
-    visitors: 2.2,
-    revenues: '4,635',
-    sales: 467,
-    conversion: 4.3,
+    name: '1002', // Bill No
+    visitors: '2024-12-03', // Service Date
+    revenues: '$950', // Service Amount
+    sales: 'Pending', // Payment Status
+    conversion: 'Stage 2', // Trigger
   },
   {
-    logo: BrandThree,
-    name: 'Github',
-    visitors: 2.1,
-    revenues: '4,290',
-    sales: 420,
-    conversion: 3.7,
+    name: '1003', // Bill No
+    visitors: '2024-12-05', // Service Date
+    revenues: '$1,450', // Service Amount
+    sales: 'Paid', // Payment Status
+    conversion: 'Stage 2', // Trigger
   },
   {
-    logo: BrandFour,
-    name: 'Vimeo',
-    visitors: 1.5,
-    revenues: '3,580',
-    sales: 389,
-    conversion: 2.5,
+    name: '1004', // Bill No
+    visitors: '2024-12-07', // Service Date
+    revenues: '$870', // Service Amount
+    sales: 'Pending', // Payment Status
+    conversion: 'Stage 1', // Trigger
   },
   {
-    logo: BrandFive,
-    name: 'Facebook',
-    visitors: 3.5,
-    revenues: '6,768',
-    sales: 390,
-    conversion: 4.2,
+    name: '1005', // Bill No
+    visitors: '2024-12-10', // Service Date
+    revenues: '$1,750', // Service Amount
+    sales: 'Paid', // Payment Status
+    conversion: 'Stage 3', // Trigger
   },
 ];
 
@@ -52,38 +42,40 @@ const TableOne = () => {
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-        Top Channels
+        Clients
       </h4>
 
       <div className="flex flex-col">
+        {/* Header Row */}
         <div className="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-5">
           <div className="p-2.5 xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Source
+              Bill No.
             </h5>
           </div>
           <div className="p-2.5 text-center xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Visitors
+              Service Date
             </h5>
           </div>
           <div className="p-2.5 text-center xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Revenues
+              Payment Status
             </h5>
           </div>
           <div className="hidden p-2.5 text-center sm:block xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Sales
+              Service Amount
             </h5>
           </div>
           <div className="hidden p-2.5 text-center sm:block xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Conversion
+              Trigger
             </h5>
           </div>
         </div>
 
+        {/* Data Rows */}
         {brandData.map((brand, key) => (
           <div
             className={`grid grid-cols-3 sm:grid-cols-5 ${
@@ -93,29 +85,49 @@ const TableOne = () => {
             }`}
             key={key}
           >
+            {/* Bill No */}
             <div className="flex items-center gap-3 p-2.5 xl:p-5">
-              <div className="flex-shrink-0">
-                <img src={brand.logo} alt="Brand" />
-              </div>
               <p className="hidden text-black dark:text-white sm:block">
                 {brand.name}
               </p>
             </div>
 
+            {/* Service Date */}
             <div className="flex items-center justify-center p-2.5 xl:p-5">
-              <p className="text-black dark:text-white">{brand.visitors}K</p>
+              <p className="text-black dark:text-white">{brand.visitors}</p>
             </div>
 
+            {/* Payment Status */}
             <div className="flex items-center justify-center p-2.5 xl:p-5">
-              <p className="text-meta-3">${brand.revenues}</p>
+              <p
+                className={`${
+                  brand.sales === 'Pending'
+                    ? 'text-red-500' // Red text for "Pending"
+                    : 'text-green-500' // Green text for "Paid"
+                } font-medium`}
+              >
+                {brand.sales}
+              </p>
             </div>
 
+            {/* Service Amount */}
             <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-              <p className="text-black dark:text-white">{brand.sales}</p>
+              <p className="text-black dark:text-white">{brand.revenues}</p>
             </div>
 
+            {/* Trigger */}
             <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-              <p className="text-meta-5">{brand.conversion}%</p>
+              <p
+                className={`${
+                  brand.conversion === 'Stage 1'
+                    ? 'text-blue-500'
+                    : brand.conversion === 'Stage 2'
+                    ? 'text-yellow-500'
+                    : 'text-green-500'
+                }`}
+              >
+                {brand.conversion}
+              </p>
             </div>
           </div>
         ))}

@@ -1,12 +1,22 @@
+import React from 'react';
 import { BRAND } from '../../types/brand';
 
 const brandData: BRAND[] = [
+  {
+    name: '1000', // Bill No
+    visitors: '2024-12-17', // Service Date
+    revenues: '$5,00', // Service Amount
+    sales: 'Pending', // Payment Status
+    conversion: 'Stage 1', // Trigger
+    action: true, // Call button enabled
+  },
   {
     name: '1001', // Bill No
     visitors: '2024-12-01', // Service Date
     revenues: '$1,200', // Service Amount
     sales: 'Paid', // Payment Status
     conversion: 'Stage 1', // Trigger
+    action: false, // Call button disabled
   },
   {
     name: '1002', // Bill No
@@ -14,6 +24,7 @@ const brandData: BRAND[] = [
     revenues: '$950', // Service Amount
     sales: 'Pending', // Payment Status
     conversion: 'Stage 2', // Trigger
+    action: true, // Call button enabled
   },
   {
     name: '1003', // Bill No
@@ -21,6 +32,7 @@ const brandData: BRAND[] = [
     revenues: '$1,450', // Service Amount
     sales: 'Paid', // Payment Status
     conversion: 'Stage 2', // Trigger
+    action: false, // Call button disabled
   },
   {
     name: '1004', // Bill No
@@ -28,6 +40,7 @@ const brandData: BRAND[] = [
     revenues: '$870', // Service Amount
     sales: 'Pending', // Payment Status
     conversion: 'Stage 1', // Trigger
+    action: true, // Call button enabled
   },
   {
     name: '1005', // Bill No
@@ -35,6 +48,7 @@ const brandData: BRAND[] = [
     revenues: '$1,750', // Service Amount
     sales: 'Paid', // Payment Status
     conversion: 'Stage 3', // Trigger
+    action: false, // Call button disabled
   },
 ];
 
@@ -47,7 +61,7 @@ const TableOne = () => {
 
       <div className="flex flex-col">
         {/* Header Row */}
-        <div className="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-5">
+        <div className="grid grid-cols-4 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-6">
           <div className="p-2.5 xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
               Bill No.
@@ -73,12 +87,17 @@ const TableOne = () => {
               Trigger
             </h5>
           </div>
+          <div className="hidden p-2.5 text-center sm:block xl:p-5">
+            <h5 className="text-sm font-medium uppercase xsm:text-base">
+              Action
+            </h5>
+          </div>
         </div>
 
         {/* Data Rows */}
         {brandData.map((brand, key) => (
           <div
-            className={`grid grid-cols-3 sm:grid-cols-5 ${
+            className={`grid grid-cols-4 sm:grid-cols-6 ${
               key === brandData.length - 1
                 ? ''
                 : 'border-b border-stroke dark:border-strokedark'
@@ -128,6 +147,20 @@ const TableOne = () => {
               >
                 {brand.conversion}
               </p>
+            </div>
+
+            {/* Action */}
+            <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+              <button
+                className={`px-4 py-2 rounded text-white ${
+                  brand.action
+                    ? 'bg-blue-500 hover:bg-blue-600'
+                    : 'bg-gray-300 cursor-not-allowed'
+                }`}
+                disabled={!brand.action}
+              >
+                Call
+              </button>
             </div>
           </div>
         ))}

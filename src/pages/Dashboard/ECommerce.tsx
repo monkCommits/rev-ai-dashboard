@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CardDataStats from '../../components/CardDataStats';
 import ChartOne from '../../components/Charts/ChartOne';
 import ChartThree from '../../components/Charts/ChartThree';
@@ -10,6 +10,17 @@ import TableTwo from '../../components/Tables/TableTwo';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 
 const ECommerce: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 10000); // 10 seconds
+
+    // Cleanup the timer when the component unmounts
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <Breadcrumb pageName="Dashboard" />
@@ -112,7 +123,27 @@ const ECommerce: React.FC = () => {
       </div>
 
       <div className="w- col-span-12 xl:col-span-8 mt-6">
-        <TableOne />
+        {isLoading ? (
+          // Loader component
+          <div className="flex flex-col items-center justify-center h-40 bg-gray-100 dark:bg-gray-900">
+            {/* Blue Spinner */}
+            <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+
+            {/* Bouncing dots */}
+            <div className="flex items-center space-x-2">
+              <div className="w-4 h-4 bg-primary-600 rounded-full animate-bounce" />
+              <div className="w-4 h-4 bg-primary-600 rounded-full animate-bounce delay-200" />
+              <div className="w-4 h-4 bg-primary-600 rounded-full animate-bounce delay-400" />
+            </div>
+
+            {/* Loader text */}
+            <p className="mt-4 text-gray-700 dark:text-gray-300">
+              Fetching user data from EMR...
+            </p>
+          </div>
+        ) : (
+          <TableOne />
+        )}
       </div>
     </>
   );

@@ -4,6 +4,7 @@ import DropdownNotification from './DropdownNotification';
 import DropdownUser from './DropdownUser';
 import LogoIcon from '../../images/logo/logo-icon.svg';
 import DarkModeSwitcher from './DarkModeSwitcher';
+import Breadcrumb from '../Breadcrumbs/Breadcrumb';
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;

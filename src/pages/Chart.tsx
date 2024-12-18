@@ -70,7 +70,7 @@ const SimplifiedCopayCollectionDashboard: React.FC = () => {
   };
 
   return (
-    <div className=" space-y-6">
+    <div className=" space-y-6 mx-25">
       <Breadcrumb pageName="Chart" />
 
       {/* Collection Performance Chart */}

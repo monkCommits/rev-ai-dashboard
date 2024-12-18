@@ -15,14 +15,14 @@ const ECommerce: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 10000); // 10 seconds
+    }, 1000); // 10 seconds
 
     // Cleanup the timer when the component unmounts
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <>
+    <div className="mx-25">
       <Breadcrumb pageName="Dashboard" />
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
@@ -124,8 +124,7 @@ const ECommerce: React.FC = () => {
 
       <div className="w- col-span-12 xl:col-span-8 mt-6">
         {isLoading ? (
-          // Loader component
-          <div className="flex flex-col items-center justify-center h-40 bg-gray-100 dark:bg-gray-900">
+          <div className="flex flex-col items-center justify-center h-40 bg-gray-100 dark:bg-gray-900 mt-40">
             {/* Blue Spinner */}
             <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
 
@@ -137,15 +136,15 @@ const ECommerce: React.FC = () => {
             </div>
 
             {/* Loader text */}
-            <p className="mt-4 text-gray-700 dark:text-gray-300">
-              Fetching user data from EMR...
+            <p className="mt-4 text-gray-700 dark:text-gray-300 text-4xl">
+              Fetching patient bill from an EHR
             </p>
           </div>
         ) : (
           <TableOne />
         )}
       </div>
-    </>
+    </div>
   );
 };
 

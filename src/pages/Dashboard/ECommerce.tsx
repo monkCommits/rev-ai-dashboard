@@ -15,7 +15,7 @@ const ECommerce: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000); // 10 seconds
+    }, 10000); // 10 seconds
 
     // Cleanup the timer when the component unmounts
     return () => clearTimeout(timer);

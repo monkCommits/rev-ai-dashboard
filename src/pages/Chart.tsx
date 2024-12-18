@@ -81,7 +81,7 @@ const SimplifiedCopayCollectionDashboard: React.FC = () => {
           </h3>
         </div>
         <div className="px-4 py-5 sm:p-6">
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={325}>
             <BarChart data={collectionStages}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
@@ -89,7 +89,7 @@ const SimplifiedCopayCollectionDashboard: React.FC = () => {
                 interval={0}
                 angle={-45}
                 textAnchor="end"
-                height={80}
+                height={110}
               />
               <YAxis
                 label={{
